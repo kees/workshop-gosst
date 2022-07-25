@@ -11,6 +11,8 @@ MAKE="make LLVM=1 O=$BUILD -j$(getconf _NPROCESSORS_ONLN)"
 
 $MAKE defconfig kvm_guest.config
 ./scripts/config --file $BUILD/.config \
+	--set-val PANIC_ON_OOPS_VALUE 1 \
+	--set-val PANIC_TIMEOUT -1 \
 	-e SLAB_FREELIST_RANDOM \
 	-e SLAB_FREELIST_HARDENED \
 	-e HARDENED_USERCOPY \
