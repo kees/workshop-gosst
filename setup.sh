@@ -8,18 +8,19 @@ export DEBIAN_FRONTEND=noninteractive
 WORKSHOP="$HOME/workshop"
 cd "$WORKSHOP"
 
-# Refresh the package lists.
-sudo apt-get update
-
-# Install git first, to start repo cloning.
-sudo apt-get install -y git
+# Create a tmpfs for faster writes.
+if [ ! -d builds ]; then
+	mkdir builds
+	sudo mount -t tmpfs -o size=10G none "$WORKSHOP/builds"
+	sudo chown $USER builds
+fi
 
 # Start phase 1 source downloads in background...
 (
  # Start fetch of Kees's Linux tree with workshop-specific changes, 200MB
- git clone --depth 4 --single-branch --branch workshop https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git linux-kees
+ test -d linux-kees || git clone -q --depth 4 --single-branch --branch workshop https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git linux-kees
  # Get QEMU Linux booting tools from the ClangBuiltLinux project.
- git clone -q https://github.com/ClangBuiltLinux/boot-utils
+ test -d boot-utils || git clone -q https://github.com/ClangBuiltLinux/boot-utils
 ) &
 
 ./install-packages.sh
@@ -32,8 +33,8 @@ wait
 # slam kernel.org and github...
 (
  sleep $(( $RANDOM % 300 ))
- git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git &
- git clone https://github.com/llvm/llvm-project.git
+ test -d linux || git clone -q https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git &
+ test -d llvm-project || git clone -q https://github.com/llvm/llvm-project.git
  ./make-llvm.sh
  echo "Fresh LLVM is finished building."
  # Wait for Linus's tree to finish cloning, if it is somehow not already done.

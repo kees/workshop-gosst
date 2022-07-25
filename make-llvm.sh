@@ -26,6 +26,7 @@ _CMAKE_COMMON="\
 
 # Stage 3
 echo "Stage 3 ($REV as $NAME)"
+mkdir -p "$BUILD"
 cd "$BUILD"
 
 prep=
@@ -42,7 +43,7 @@ if [ -n "$prep" ]; then
 		-DCMAKE_INSTALL_PREFIX="$STAGE3/install"	\
 		"$PROJECT"
 fi
-time ninja install
+ninja install
 STAGE3BIN="$STAGE3/install/bin"
 echo "$STAGE3BIN"
 

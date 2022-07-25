@@ -4,6 +4,9 @@ set -eu
 export LANG=C
 export DEBIAN_FRONTEND=noninteractive
 
+# Refresh the package lists.
+sudo apt-get update
+
 # Report matching package names, if installable.
 has_pkg()
 {
@@ -50,13 +53,10 @@ build-deps()
 PKGS="\
 	python3 $(has_pkg python-is-python3) \
 	git \
-	exuberant-ctags \
-	creduce \
 	$(has_pkg coccinelle) \
 	devscripts \
 	u-boot-tools \
 	sparse \
-	ccache \
 	build-essential \
 	libtool-bin \
 "
@@ -69,7 +69,7 @@ PKGS="$PKGS \
 "
 
 # Linux build dependencies
-PKGS="$PKGS $(build-deps linux)"
+PKGS="$PKGS $(build-deps $(dpkg -S /boot/vmlinuz-$(uname -r) | cut -d: -f1))"
 
 # Find plugin versions since they're not in the gcc-default alias.
 PLUGV=$(ver_pkg 'gcc-.*-plugin-dev')
@@ -78,7 +78,7 @@ PLUGV=$(ver_pkg 'gcc-.*-plugin-dev')
 PKGS="$PKGS gcc g++ gcc-$PLUGV g++-$PLUGV gcc-$PLUGV-plugin-dev"
 
 # Install Distro's Clang.
-PKGS="$PKGS llvm clang lld"
+PKGS="$PKGS clang lld"
 
 # Install Distro's QEMU.
 PKGS="$PKGS qemu-system-x86"
