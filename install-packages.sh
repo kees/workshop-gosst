@@ -5,10 +5,11 @@ export LANG=C
 export DEBIAN_FRONTEND=noninteractive
 
 # Refresh the package lists.
+echo "Refresh package list..."
 sudo apt-get update
 
-# Two phases: one for the Linux build deps, then everything else.
-sudo apt build-dep -y $(dpkg -S /boot/vmlinuz-$(uname -r) | cut -d: -f1)
+echo "Remove conflicting stuff..."
+sudo apt install -y libunwind-dev
 
 # Report matching package names, if installable.
 has_pkg()
