@@ -11,6 +11,7 @@ cd "$WORKSHOP"
 # Create a tmpfs for faster writes.
 if [ ! -d builds ]; then
 	mkdir builds
+	echo "Creating RAM disk to speed up builds"
 	sudo mount -t tmpfs -o size=10G tmpfs "$WORKSHOP/builds"
 	sudo chown $USER builds
 fi
