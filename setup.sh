@@ -26,6 +26,11 @@ fi
 ) &
 
 ./install-packages.sh
+# Turn on hyperthreading again
+echo "Turning hyperthreading back on..."
+for i in /sys/devices/system/cpu/cpu[0-9]*/online; do
+	echo 1 | sudo tee $i >/dev/null
+done
 
 # Wait for initial download to finish, if it hasn't already.
 echo "Waiting for initial git clones to finish ..."
