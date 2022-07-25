@@ -6,14 +6,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 WORKSHOP="$HOME/workshop"
 cd "$WORKSHOP"
-
-# Create a tmpfs for faster writes.
-if [ ! -d builds ]; then
-	mkdir builds
-	echo "Creating RAM disk to speed up builds"
-	sudo mount -t tmpfs -o size=10G tmpfs "$WORKSHOP/builds"
-	sudo chown $USER builds
-fi
+mkdir builds
 
 # Start phase 1 source downloads in background...
 (
