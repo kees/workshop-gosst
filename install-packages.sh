@@ -11,6 +11,8 @@ sudo apt-get update
 echo "Remove conflicting stuff..."
 sudo apt install -y libunwind-dev
 
+echo "Calculating what needs to be installed..."
+
 # Report matching package names, if installable.
 has_pkg()
 {
