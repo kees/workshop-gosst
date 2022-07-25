@@ -84,7 +84,7 @@ PLUGV=$(ver_pkg 'gcc-.*-plugin-dev')
 PKGS="$PKGS gcc g++ gcc-$PLUGV g++-$PLUGV gcc-$PLUGV-plugin-dev"
 
 # Install Distro's Clang.
-PKGS="$PKGS clang lld"
+PKGS="$PKGS llvm clang lld"
 
 # Install Distro's QEMU.
 PKGS="$PKGS qemu-system-x86"
