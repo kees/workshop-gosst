@@ -12,4 +12,5 @@ if [ -x "$CLANG_DIR"/clang ]; then
 fi
 MAKE="make LLVM=$LLVM O=$BUILD -j$(getconf _NPROCESSORS_ONLN)"
 cd $SRC
+echo "Building $SRC in $BUILD ..."
 $MAKE -s olddefconfig bzImage
