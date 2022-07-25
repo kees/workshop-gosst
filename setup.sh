@@ -42,7 +42,9 @@ wait
  # Pick a SHA that seems to build correctly...
  cd llvm-project && git checkout 12fbd2d377e396ad61bce56d71c98a1eb1bebfa9 -b working && cd ..
  # Wait for Linus's tree to finish cloning, if it is somehow not already done.
+ echo "Waiting for second batch of clones to finish ..."
  wait
+ echo "Done with clones. Waiting for Linux build to finish ..."
 ) &
 
 # Build Kees's patched linux kernel ...
