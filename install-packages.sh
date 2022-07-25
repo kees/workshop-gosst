@@ -7,6 +7,9 @@ export DEBIAN_FRONTEND=noninteractive
 # Refresh the package lists.
 sudo apt-get update
 
+# Two phases: one for the Linux build deps, then everything else.
+sudo apt build-dep -y $(dpkg -S /boot/vmlinuz-$(uname -r) | cut -d: -f1)
+
 # Report matching package names, if installable.
 has_pkg()
 {
@@ -84,7 +87,8 @@ PKGS="$PKGS clang lld"
 PKGS="$PKGS qemu-system-x86"
 
 # Installed wanted packages and upgrade anything else that needs it.
-sudo apt-get dist-upgrade -y $PKGS
+#sudo apt-get dist-upgrade -y $PKGS
+sudo apt-get install -y $PKGS
 
 # Toss any cruft.
 #sudo apt-get autoremove --purge -y
