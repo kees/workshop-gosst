@@ -84,7 +84,9 @@ PKGS="$PKGS llvm clang lld"
 PKGS="$PKGS qemu-system-x86"
 
 # Installed wanted packages and upgrade anything else that needs it.
-sudo apt-get dist-upgrade -y $PKGS
+#sudo apt-get dist-upgrade -y $PKGS
+# Actually confirm...
+sudo apt-get dist-upgrade $PKGS
 
 # Toss any cruft.
 #sudo apt-get autoremove --purge -y
