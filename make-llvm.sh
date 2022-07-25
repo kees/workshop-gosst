@@ -17,12 +17,15 @@ _CMAKE_COMMON="\
 	--log-level=NOTICE \
 	-DCMAKE_BUILD_TYPE=Release \
 	-DLLVM_ENABLE_PROJECTS='clang;lld;compiler-rt'	\
-	-DLLVM_USE_LINKER=lld			\
-	-DCMAKE_C_COMPILER="$STAGE1BIN"/clang      \
-	-DCMAKE_CXX_COMPILER="$STAGE1BIN"/clang++  \
-	-DCMAKE_RANLIB="$STAGE1BIN"/llvm-ranlib    \
-	-DCMAKE_AR="$STAGE1BIN"/llvm-ar            \
 "
+
+# Use gcc for the build on this distro...
+#	-DLLVM_USE_LINKER=lld			\
+#	-DCMAKE_C_COMPILER="$STAGE1BIN"/clang      \
+#	-DCMAKE_CXX_COMPILER="$STAGE1BIN"/clang++  \
+#	-DCMAKE_RANLIB="$STAGE1BIN"/llvm-ranlib    \
+#	-DCMAKE_AR="$STAGE1BIN"/llvm-ar            \
+#"
 
 # Stage 3
 echo "Stage 3 ($REV as $NAME)"

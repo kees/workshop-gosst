@@ -15,5 +15,6 @@ $MAKE defconfig kvm_guest.config
 	-e SLAB_FREELIST_HARDENED \
 	-e HARDENED_USERCOPY \
 	-e FORTIFY_SOURCE \
+	-e PVPANIC \
 	-e WORKSHOP \
 	#
