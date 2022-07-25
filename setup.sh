@@ -11,7 +11,7 @@ cd "$WORKSHOP"
 # Create a tmpfs for faster writes.
 if [ ! -d builds ]; then
 	mkdir builds
-	sudo mount -t tmpfs -o size=10G none "$WORKSHOP/builds"
+	sudo mount -t tmpfs -o size=10G tmpfs "$WORKSHOP/builds"
 	sudo chown $USER builds
 fi
 
