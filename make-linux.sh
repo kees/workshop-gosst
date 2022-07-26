@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eu
 
+./enable-ht.sh
+
 SRC="${1:-linux-kees}"
 BUILD=../builds/linux
 

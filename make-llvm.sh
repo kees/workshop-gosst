@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eu
 
+./enable-ht.sh
+
 NAME=x86
 
 PROJECT="$HOME/workshop/llvm-project/llvm"

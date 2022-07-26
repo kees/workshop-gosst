@@ -19,6 +19,8 @@ mkdir builds
 ) &
 
 ./install-packages.sh
+
+echo "Turning hyperthreading back on..."
 ./enable-ht.sh
 
 # Wait for initial download to finish, if it hasn't already.
