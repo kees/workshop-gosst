@@ -93,6 +93,10 @@ PKGS="$PKGS qemu-system-x86"
 #sudo apt-get dist-upgrade -y $PKGS
 sudo apt-get install -y $PKGS
 
+# Remove packages that create problems for LLVM build.
+# https://github.com/intel/opencl-clang/issues/4
+sudo apt purge -y libctypes-ocaml libctypes-ocaml-dev
+
 # Toss any cruft.
 #sudo apt-get autoremove --purge -y
 #sudo apt-get clean
