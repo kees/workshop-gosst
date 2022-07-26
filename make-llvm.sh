@@ -36,6 +36,7 @@ if [ ! -d "$STAGE3" ]; then
 else
 	echo "Rebuilding $STAGE3 ..."
 	#rm -rf "$STAGE3"
+	prep=yes
 fi
 mkdir -p "$STAGE3" && cd "$STAGE3"
 if [ -n "$prep" ]; then
