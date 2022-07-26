@@ -22,6 +22,7 @@ _CMAKE_COMMON="\
 	--log-level=NOTICE \
 	-DCMAKE_BUILD_TYPE=Release \
 	-DLLVM_ENABLE_PROJECTS='clang;lld;compiler-rt'	\
+	-DLLVM_TARGETS_TO_BUILD=X86 \
 	-DLLVM_USE_LINKER=lld			\
 	-DCMAKE_C_COMPILER="$STAGE1BIN"/clang      \
 	-DCMAKE_CXX_COMPILER="$STAGE1BIN"/clang++  \
