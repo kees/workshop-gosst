@@ -1,6 +1,9 @@
 #!/bin/bash
 set -eu
 
+WORKSHOP="$HOME/workshop"
+cd "$WORKSHOP"
+
 ./enable-ht.sh
 
 SRC="${1:-linux-kees}"
